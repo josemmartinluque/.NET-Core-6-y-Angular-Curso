@@ -18,6 +18,14 @@ export class MascotaService {
     }
 
     getMascota(id: number): Observable<Mascota> {
-        return this.http.get<Mascota>((`${this.myAppUrl}${this.myApiUrl}${id}`))
+        return this.http.get<Mascota>((`${this.myAppUrl}${this.myApiUrl}${id}`));
+    }
+
+    deleteMascota(id: number): Observable<void> {
+        return this.http.delete<void>((`${this.myAppUrl}${this.myApiUrl}${id}`));
+    }
+
+    addMascota(mascota: Mascota): Observable<Mascota> {
+        return this.http.post<Mascota>((`${this.myAppUrl}${this.myApiUrl}`), mascota);
     }
 }

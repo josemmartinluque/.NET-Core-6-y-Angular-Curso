@@ -2,14 +2,16 @@
     <h1>Ver Mascota</h1>
 </div>
 
-<div class="container">
+<!-- <div *ngIf="mascota$ | async as mascota" class="container"> -- PIPE ASYNC -->
+<app-spinner *ngIF="loading" ></app-spinner>
+<div *ngIf="mascota != null" class="container">
     <mat-card class="card">
-        <mat-card-header>Bartolo</mat-card-header>
+        <mat-card-title>{{ mascota.nombre }}</mat-card-title>
         <mat-card-content>
-            <p><strong>Raza:</strong> Labrador</p>
-            <p><strong>Color:</strong> Marron</p>
-            <p><strong>Peso:</strong> 25</p>
-            <p><strong>Edad:</strong> 4 años</p>
+            <p><strong>Raza:</strong> {{ mascota.raza }}</p>
+            <p><strong>Color:</strong> {{ mascota.color }}</p>
+            <p><strong>Peso:</strong> {{ mascota.peso }}</p>
+            <p><strong>Edad:</strong> {{ mascota.edad }} años</p>
         </mat-card-content>
 
         <mat-card-actions>
@@ -17,8 +19,3 @@
         </mat-card-actions>
     </mat-card>
 </div>
-
-
-
-
-
