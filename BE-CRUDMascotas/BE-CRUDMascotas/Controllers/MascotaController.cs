@@ -90,5 +90,38 @@ namespace BE_CRUDMascotas.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, Mascota mascota)
+        {
+            try
+            {
+                if (id != mascota.Id)
+                {
+                    return BadRequest();
+                }
+
+                var mascotaItem = await _context.Mascotas.FindAsync(id);
+
+                if (mascotaItem == null)
+                {
+                    return NotFound();
+                }
+
+                mascotaItem.Nombre = mascota.Nombre;
+                mascotaItem.Raza = mascota.Raza;
+                mascotaItem.Color = mascota.Color;
+                mascotaItem.Edad = mascota.Edad;
+                mascotaItem.Peso = mascota.Peso;
+
+                await _context.SaveChangesAsync();
+
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }
